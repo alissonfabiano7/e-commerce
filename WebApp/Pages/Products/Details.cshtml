@@ -1,0 +1,84 @@
+﻿@page
+@model WebApp.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </dt>
+                <dd class="col-sm-10 text-break">
+                    @Html.DisplayFor(model => model.Product.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product.Price)
+                </dt>
+                <dd class="col-sm-10 text-break">
+                    @Html.DisplayFor(model => model.Product.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product.Category)
+                </dt>
+                <dd class="col-sm-10 text-break">
+                    @Html.DisplayFor(model => model.Product.Category.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Product.Description)
+                </dt>
+                <dd class="col-sm-10 text-break">
+                    @Html.DisplayFor(model => model.Product.Description)
+                </dd>
+            </dl>
+        <div>
+            <a asp-page="./Edit" asp-route-id="@Model.Product.Id">Edit</a> |
+            <a asp-page="./Index">Back to List</a>
+        </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach (var image in Model.Product.Image.OrderBy(o => o.Ordering))
+                    {
+                        <li data-target="#myCarousel" data-slide-to="@image.Ordering" class="@(image.Ordering == 0 ? "active" : "")"></li>
+                    }
+                </ol>
+
+
+                <div class="carousel-inner">
+                    @foreach (var image in Model.Product.Image.OrderBy(o => o.Ordering))
+                    {
+                        <div class="carousel-item @(image.Ordering == 0 ? "active" : "")">
+
+
+                            <img class="d-block w-100" src="~/@image.Path">
+
+
+                        </div>
+                    }
+                </div>
+
+
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+    </div>
+        </div>
+
+</div>

@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "Sortable@1.10.2",
+      "destination": "wwwroot/lib/Sortable/"
+    },
+    {
+      "library": "dropzone@5.7.2",
+      "destination": "wwwroot/lib/dropzone/"
+    }
+  ]
+}

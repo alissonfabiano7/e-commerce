@@ -1,0 +1,92 @@
+﻿@page
+@model WebApp.Pages.Products.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" id="myForm" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Product.Name" class="control-label"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Description" class="control-label"></label>
+                <textarea asp-for="Product.Description" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.CategoryId" class="control-label"></label>
+                <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+
+
+
+
+
+            <div id="helper-div"></div>
+
+            <div class="form-group">
+                <input type="submit" id="submit-input" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+
+
+    </div>
+    <div class="drop-zone col-md-8">
+        <div>
+            <span class="drop-zone__prompt">Drop file here or click to upload</span>
+            <input type="file" class="drop-zone__input" accept="image/*" multiple>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+
+<div id="myModal" class="modal">
+    <img class="modal-content" id="modal-image">
+    <div id="caption"></div>
+</div>
+
+@foreach (var image in Model.Product.Image.OrderBy(o => o.Ordering))
+{
+
+    <div class="hidden-div" hidden>/@image.Path,@image.OriginalName</div>
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @*libraries*@
+    <script src="~/lib/Sortable/Sortable.js"></script>
+
+    @*custom files*@
+    <script src="~/js/Products/deleteImage.js"></script>
+    <script src="~/js/Products/dragAndDrop.js"></script>
+    <script src="~/js/Products/modalImage.js"></script>
+    <script src="~/js/Products/ordering.js"></script>
+    <script src="~/js/Products/sendindPackage.js"></script>
+    <script src="~/js/Products/sortableStart.js"></script>
+    <script src="~/js/Products/Edit/forEdit.js"></script>
+    <script src="~/js/Products/Edit/fileSenderEdit.js"></script>
+
+}
