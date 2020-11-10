@@ -5,12 +5,7 @@
 }
 
 
-<h1>Welcome to the CRUD operations demonstration</h1>
-<p>This WebApp is for demonstration purposes only. It simulates de CRUD operations for "Products" in a e-commerce like site. The solemn purpose of this WebApp is showing the author's ability to work with ASP.NET Core framework, Entity Framework, Javascript, HTML and CSS.</p>
-
-<h2>Chose on the navigation bar what do you want to create</h2>
-    
-    <p>You may create, delete, edit and update Products. Each Product have a category with all CRUD operations as well.</p> 
-
-
-
+<p>@foreach (var item in Model.Product)
+{
+    @item.Id
+}</p>
